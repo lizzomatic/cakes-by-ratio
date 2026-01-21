@@ -20,15 +20,15 @@ def calculator(request):
             
                 # Base recipe (for 1 egg)
                 base_recipe = {
-                    'banana': 3.0,
-                    'banana_max': 3.5,
+                    'banana': 1,
+                    'banana_cups': 0.5,
                     'eggs': 1,
                     'baking_soda': 0.75,
                     'flax_seeds': 1,
                     'seeds_nuts_grains': 0.5,
                     'cinnamon': 1,
                     'ginger': 1,
-                    'vinegar': 2,
+                    'vinegar': 2.5,
                     'fresh fruit': 0.5,
                 }
                 
@@ -40,7 +40,7 @@ def calculator(request):
                 
                 recipe = {
                     'banana': base_recipe['banana'] * multiplier,
-                    'banana_max': base_recipe['banana_max'] * multiplier,
+                    'banana_cups': base_recipe['banana_cups'] * multiplier,
                     'eggs': base_recipe['eggs'] * multiplier,
                     'baking_soda': base_recipe['baking_soda'] * multiplier,
                     'flax_seeds': base_recipe['flax_seeds'] * multiplier,

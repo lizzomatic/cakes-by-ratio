@@ -16,7 +16,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-            background-image: url("{% static 'images/cakes.jpg' %}");
+            background-image: url("{% static '/images/cakes.jpg' %}");
             background-repeat: repeat;                /* this makes it tile */
             background-size: 120px 120px;                        /* default tiling size */
 
@@ -140,15 +140,15 @@
 
         <p>This cake recipe is meant for experimenting. It features fresh fruit and accomidates any nuts or seeds you have in your pantry. 
             I developed this recipe over a few years as a whole foods allergy-friendly alternative to so many coffee house muffins. 
-            The recipe has eggs and a few key structural ingredients, but it is otherwise very flexible. I usually make a single cake with one egg, but I like to make bigger cakes or big batches of mini-muffins. I wanted to share this recipe in a way that can be easily scaled.
-            It's Lovely with coffee or tea in the morning, served warm with butter, greek yogurt, chevre, almond butter, or honey. 
+            The recipe uses eggs and a few key structural ingredients, but it is otherwise very flexible. I usually make a single cake with one egg, but I like to make bigger cakes or big batches of mini-muffins. I wanted to share this recipe in a way that can be easily scaled.
+            It's lovely with coffee or tea in the morning, served warm with butter, greek yogurt, chevre, almond butter, or honey. 
             Feel free to riff on my recipe, use your freshest berries, apples, pears. Mix in nuts at the end. 
             Have fun with this cake; it's a pleasure to make, eat, and share with friends.
 
-            At some point I will hone an egg-free version of this recipe for my vegan and egg-allergic friends, but for everyone else this cake wins at high-protein breakfast.
+            At some point I will hone an egg-free version of this recipe for my vegan and egg-allergic friends, but for everyone else this cake wins.
         </p>
         <br>
-        <p>Fill in your cake requirements and limitations to get your recipe:</p>
+        <p>Fill in your cake requirements and limitations to get your custom recipe:</p>
         <br>
         {% if error %}
         <div class="error">{{ error }}</div>
@@ -158,7 +158,7 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="people">How many cake-eaters?</label>
+                <label for="people">How many people want cake?</label>
                 <input type="number" id="people" name="people" min="1" value="{{ people_input }}" required>
             </div>
 
@@ -178,7 +178,7 @@
             </div>
             
             <div class="ingredient">
-                <strong>{{ recipe.banana|floatformat:3 }}-{{ recipe.banana_max|floatformat:3.5 }} oz.</strong> banana
+                <strong>{{ recipe.banana }} medium</strong> banana or <strong>{{ recipe.banana_cups|floatformat:1 }}</strong> cups mashed banana, apple sauce, or other fruit puree
             </div>
             <div class="ingredient">
                 <strong>{{ recipe.eggs }}</strong> egg{{ recipe.eggs|pluralize }}
@@ -187,22 +187,22 @@
                 <strong>{{ recipe.baking_soda|floatformat:2 }} tsp.</strong> baking soda
             </div>
             <div class="ingredient">
-                <strong>{{ recipe.flax_seeds|floatformat:2 }} Tbs.</strong> whole flax seeds
+                <strong>{{ recipe.flax_seeds }} Tbs.</strong> whole flax seeds
             </div>
             <div class="ingredient">
-                <strong>{{ recipe.seeds_nuts_grains|floatformat:2 }} cup{{ recipe.seeds_nuts_grains|floatformat:0|pluralize }}</strong> seeds, nuts, whole grains
+                <strong>{{ recipe.seeds_nuts_grains|floatformat:1 }} cup{{ recipe.seeds_nuts_grains|floatformat:0|pluralize }}</strong> seeds, nuts, whole grains
             </div>
             <div class="ingredient">
-                <strong>{{ recipe.cinnamon|floatformat:2 }} tsp.</strong> cinnamon
+                <strong>{{ recipe.cinnamon }} tsp.</strong> cinnamon
             </div>
             <div class="ingredient">
-                <strong>{{ recipe.ginger|floatformat:2 }} Tbs.</strong> fresh grated ginger
+                <strong>{{ recipe.ginger }} Tbs.</strong> fresh grated ginger
             </div>
             <div class="ingredient">
-                <strong>{{ recipe.vinegar|floatformat:2.5 }} Tbs.</strong> apple cider vinegar
+                <strong>{{ recipe.vinegar|floatformat:1 }} Tbs.</strong> apple cider vinegar
             </div>
             <div class="ingredient">
-                <strong>{{ recipe.fruit|floatformat:0.5 }} cup</strong> berries or sliced fruit
+                <strong>~{{ recipe.fruit|floatformat:1}} cup</strong> berries or sliced fruit
             </div>
             <div class="header-info">
                 Instructions:
