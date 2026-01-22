@@ -1,5 +1,5 @@
 # cakes-by-ratio
-[Hosted live at ratiocakes.pythonanywhere.com](https://ratiocakes.pythonanywhere.com/)
+[ratiocakes.pythonanywhere.com](https://ratiocakes.pythonanywhere.com/)
 
 I was looking for the perfect fruit-forward, healthy breakfast cake. I am allergic to oats and wheat and all things grass-related and don't like the energy surge/crash cycle of sugary breakfast foods. I couldn't find what I wanted, so I  made it myself. 
 
