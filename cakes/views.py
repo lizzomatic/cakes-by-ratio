@@ -4,24 +4,19 @@ import math
 def calculator(request):
     recipe = None
     error = None
-    #message = None
     eggs_input = ''
     people_input = ''
-    
+
     if request.method == 'POST':
         try:
             eggs = int(request.POST.get('eggs', 0))
             people = int(request.POST.get('people', 0))
             eggs_input = eggs
             people_input = people
-            
-            if eggs < 2 * people:
-                multiplier = eggs
+
             if eggs <= 0 or people <= 0:
                 error = "Please enter positive numbers for eggs and people."
             else:
-            
-                # Base recipe (for 1 egg)
                 base_recipe = {
                     'banana': 1,
                     'banana_cups': 0.5,
@@ -34,16 +29,19 @@ def calculator(request):
                     'vinegar': 2.5,
                     'fresh fruit': 0.5,
                 }
-                
-                # Scale recipe - determine multiplier & message
-                # eggs limiting factor
-                if (eggs < 2 * people):
-                    multiplier = eggs
-                # people limiting factor
-                #if  (eggs >= 2 * people):
-                else:
-                    multiplier = math.ceil(people / 2)
-              
+
+                # # Determine multiplier
+                # if people <= 2:
+                #     multiplier = 1
+                # elif eggs < (2 * people):
+                #     multiplier = eggs
+                # else:
+                #     multiplier = math.ceil(people / 2)
+                # Determine multiplier
+                multiplier = math.ceil(people / 2)
+                multiplier = min(multiplier, eggs)
+                multiplier = max(multiplier, 1)
+
                 recipe = {
                     'banana': base_recipe['banana'] * multiplier,
                     'banana_cups': base_recipe['banana_cups'] * multiplier,
@@ -55,13 +53,13 @@ def calculator(request):
                     'ginger': base_recipe['ginger'] * multiplier,
                     'vinegar': base_recipe['vinegar'] * multiplier,
                     'fruit': base_recipe['fresh fruit'] * multiplier,
-                    'serves': eggs * 2,
-                    'cakes_made': eggs,
+                    'serves': multiplier * 2,
+                    'cakes_made': multiplier,   # add back for your template
                 }
-                
+
         except ValueError:
             error = "Please enter valid numbers."
-    
+
     return render(request, 'cakes/calculator.html', {
         'recipe': recipe,
         'error': error,
