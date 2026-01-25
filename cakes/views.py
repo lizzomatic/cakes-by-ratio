@@ -4,6 +4,7 @@ import math
 def calculator(request):
     recipe = None
     error = None
+    #message = None
     eggs_input = ''
     people_input = ''
     
@@ -14,6 +15,8 @@ def calculator(request):
             eggs_input = eggs
             people_input = people
             
+            if eggs < 2 * people:
+                multiplier = eggs
             if eggs <= 0 or people <= 0:
                 error = "Please enter positive numbers for eggs and people."
             else:
@@ -32,12 +35,15 @@ def calculator(request):
                     'fresh fruit': 0.5,
                 }
                 
-                # Scale recipe by number of eggs & people
-                if (people > eggs):
+                # Scale recipe - determine multiplier & message
+                # eggs limiting factor
+                if (eggs < 2 * people):
                     multiplier = eggs
+                # people limiting factor
+                #if  (eggs >= 2 * people):
                 else:
-                    multiplier = people
-                
+                    multiplier = math.ceil(people / 2)
+              
                 recipe = {
                     'banana': base_recipe['banana'] * multiplier,
                     'banana_cups': base_recipe['banana_cups'] * multiplier,
